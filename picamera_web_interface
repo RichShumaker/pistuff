@@ -1,1 +1,30 @@
 I want to create a web app similar to RPi Cam Web Interface that uses picamera by Dave Jones(Waveform80).
+
+I love the MotionPie surveillance system based on buildroot and motion for ease of use, great job again.
+https://github.com/ccrisan/motionPie
+
+I love RPi Cam Web Interface for using the Pi Camera day to day hands on.
+https://github.com/silvanmelchior/RPi_Cam_Web_Interface
+
+I love picamera as it has 'every every' camera feature ready to be used by python.
+http://picamera.readthedocs.org/en/release-1.7/
+
+I have not used picroscopy, although that looks super cool.
+http://picroscopy.readthedocs.org/en/latest/
+
+I would like to see a Swiss army style web implementation to take full advantage of the RasPi Camera abilities and exploit its GPU strength. It would be cool to be able to trigger a full 1080p video record(or full frame recording) on multiple cameras based on 'movement' that the GPU 'sees' because of course motion vectors.
+Basically set up a web home page that could link to different ways to use the Pi Camera,
+1. Live View for use in production, science imaging(ex. microscope), teaching(virtual overhead), assisted reading, or anywhere that needs a clean HDMi feed.
+2. Security System set up
+3. Photography usage day to day
+3a. GPIO controls of Web App, shutter button, knobs for image controls
+3b. Astronomy photography and 'experimental' photography
+3c. Photobooth
+4. Wii style IR motion tracking or something more complex with multi-cameras
+
+The Raspberry Pi camera is not a DSLR camera, it can be a lot more though in terms of usage.
+Heck I still can't believe I own an infrared camera, who needs to load film inside a camera bag anymore.
+
+Currently I am exploring Kerrigell and Django to allow me to use Python in Web development
+http://karrigell.sourceforge.net/en/index.html
+https://www.djangoproject.com
