@@ -1,0 +1,36 @@
+Looping using Python
+So the Raspberry Pi can seemlessly loop video WITHOUT AUDIO right out of the box.  The Hellow World code has an example of this.
+If you want OMX Player to loop without a pause(seemless) with audio you need to recompile the OMX Player based on the research I have donee.
+
+So I want to use a method that works with Python and allows you to do it seemelessly by running two instances with one paused.
+Then starting a new version and going back and forth.
+
+Here is the website discussing this method, http://www.sundh.com/blog/2013/10/loop-videos-seamlessly-omxplayer/
+
+Here is the code described at the page
+
+By having 2 different names of the same movie I was in complete control of the omxplayer processes running in the background to play another movie on top of this.
+
+I start off loading both movies by calling making to OMXPlayer instances in pyomxplayer and pausing the second movie:
+
+self.loop1= OMXPlayer(‘/home/pi/loop1.mp4′, ‘-o local’, start_playback=True, do_dict=False)
+self.loop2 = OMXPlayer(‘/home/pi/loop2.mp4′, ‘-o local’, start_playback=True,do_dict=False)
+self.loop2.toggle_pause()
+
+In a loop I check when the first video reaches its end position and pause it just before to start the next movie. Since it already loaded, there is no buffering for it to play. Note that the end position needs to be set a little bit before the video exactly ends in order to not get out of the video screen mode.
+
+position = self.loop1.position/1000000
+if position > 12.8:
+     self.loop1.toggle_pause()
+
+A few seconds later I kill the process of the first movie to start it and pause it for next time.
+
+sleep(2)
+os.system(‘pkill -9 -f "/usr/bin/omxplayer.bin -s /home/pi/loop1.mp4 -o local"’)
+os.system(‘pkill -9 -f "/bin/bash /usr/bin/omxplayer -s /home/pi/loop1.mp4 -o local"’)
+sleep(2)
+self.loop1= OMXPlayer(‘/home/pi/loop1.mp4′, ‘-o local’, start_playback=True, do_dict=False)
+self.loop1.toggle_pause()
+
+I added a 2 seconds delay in order for the new movie to have time to show and to allow for some time to kill the process.
+- See more at: http://www.sundh.com/blog/2013/10/loop-videos-seamlessly-omxplayer/#sthash.aJI8CShH.dpuf
